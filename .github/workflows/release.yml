@@ -56,7 +56,7 @@ jobs:
         id: create_release
         uses: softprops/action-gh-release@v1
         with:
-          name: DxWorks new-project ${{ steps.semver_parser.outputs.semver }}
+          name: DxWorks vis-puppet ${{ steps.semver_parser.outputs.semver }}
           body_path: ${{ github.workspace }}/releaseNotes/v${{ steps.semver_parser.outputs.semver }}.md
           body: ""
           prerelease: false

@@ -1,24 +1,24 @@
 {
-  "name": "@dxworks/new-project",
+  "name": "@dxworks/vis-puppet",
   "version": "0.0.0",
   "description": "",
   "keywords": [
     "dxworks",
     "dxw"
   ],
-  "homepage": "https://github.com/dxworks/new-project#readme",
+  "homepage": "https://github.com/dxworks/vis-puppet#readme",
   "bugs": {
-    "url": "https://github.com/dxworks/new-project/issues"
+    "url": "https://github.com/dxworks/vis-puppet/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dxworks/new-project.git"
+    "url": "git+https://github.com/dxworks/vis-puppet.git"
   },
   "license": "Apache-2.0",
   "author": "Mario Rivis <mario.rivis@gmail.com>",
-  "main": "dist/new-project.js",
+  "main": "dist/vis-puppet.js",
   "bin": {
-    "dx-new-project": "dist/index.js"
+    "dx-vis-puppet": "dist/index.js"
   },
   "files": [
     "dist"
@@ -31,7 +31,7 @@
     "create": "npm run build && npm run test",
     "lint": "eslint ./src --ext .ts",
     "lint:fix": "eslint ./src --ext .ts --fix",
-    "local": "npm run build && npm link && npx dx-new-project --help",
+    "local": "npm run build && npm link && npx dx-vis-puppet --help",
     "refresh": "rm -rf ./node_modules ./package-lock.json && npm install",
     "test": "jest --passWithNoTests",
     "test:dev": "jest --watch"
@@ -69,7 +69,7 @@
   "dxw": {
     "commands": [
       {
-        "file": "dist/new-project.js",
+        "file": "dist/vis-puppet.js",
         "command": "mainCommand"
       }
     ]

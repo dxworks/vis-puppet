@@ -1,4 +1,4 @@
-# Dxworks new-project
+# Dxworks vis-puppet
 
 This project wa
 
@@ -7,17 +7,17 @@ This project wa
 Use `npm` to install
 
 ```bash
-npm i -g @dxworks/new-project
+npm i -g @dxworks/vis-puppet
 ```
 
 ## Usage
 
 ```shell
-dx-new-project
+dx-vis-puppet
 ```
 or
 ```shell
-dxw new-project
+dxw vis-puppet
 ```
 
 ## Contributing

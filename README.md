@@ -1,23 +1,23 @@
-# Dxworks new-project
+# Dxworks vis-puppet
 
 This project was generated using the `dxworks-template-node-ts` repository template.
-To customize the project, replace all `new-project` instances with the name of the new project.
+To customize the project, replace all `vis-puppet` instances with the name of the new project.
 ## Installation
 
 Use `npm` to install 
 
 ```bash
-npm i -g @dxworks/new-project
+npm i -g @dxworks/vis-puppet
 ```
 
 ## Usage
 
 ```shell
-dx-new-project
+dx-vis-puppet
 ```
 or
 ```shell
-dxw new-project
+dxw vis-puppet
 ```
 
 ## Contributing
