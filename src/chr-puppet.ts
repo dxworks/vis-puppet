@@ -3,13 +3,14 @@ import { _package } from './utils'
 import fetch from 'node-fetch'
 import fs from 'fs'
 import path from 'path'
+import YAML from 'yaml'
 import puppeteer from 'puppeteer/lib/cjs/puppeteer/node-puppeteer-core'
 
 export const chrPuppet = new Command()
     .name('chr-puppet')
     .description(_package.description)
     .argument('<url>', 'Chronos base url')
-    .argument('<visualisations>', `The name of the requested visualisations: 'vis 1','vis2'`)
+    .option('<visualisationsPath>', 'Path to visualisations yaml')
     .option('-w, --width <width>', 'The width of the viewport', parseInt, 2000)
     .option('-h, --height <height>', 'The height of the viewport', parseInt, 2000)
     .option('-o, --output <output>', 'The path of the output file', '.')
@@ -17,16 +18,22 @@ export const chrPuppet = new Command()
     .action(extractVis)
 
 
-export async function extractVis(url: string, visualisations: string[], options: { width: number, height: number, output: string }): Promise<void> {
+export async function extractVis(url: string, visualisationsPath: string, options: { width: number, height: number, output: string }): Promise<void> {
     mkdir(options.output)
+    const visualizations = YAML.parse(fs.readFileSync(visualisationsPath, 'utf8')) as Visualisations
 
     const projectsUrl = 'api/analysis/projects'
-    const sysmaps = await getVisData(url, `${projectsUrl}/sysmaps`, 'analysis/system-map', '#CreateSystemMap')
-    const charts = await getVisData(url, `${projectsUrl}/graphs`, 'analysis/chart/create', '.charts-container', response => response.graphs)
+    let sysmaps = await getVisData(url, `${projectsUrl}/sysmaps`, 'analysis/system-map', '#CreateSystemMap')
+    sysmaps = sysmaps.filter(sysmap => visualizations.sysmaps.includes(sysmap.name))
 
-    const viss: Vis[] = [...sysmaps, ...charts].filter(vis => visualisations.includes(vis.name))
+    const charts = (await getVisData(url, `${projectsUrl}/graphs`, 'analysis/chart/create', '.charts-container', response => response.graphs))
+        .filter(chart => visualizations.charts.includes(chart.name))
 
-    await saveVisualisations(viss, url, options)
+    // const coupling = (await getVisData(url, `${projectsUrl}/graphs, `))
+
+    await saveVisualisations(sysmaps, url, options)
+    await saveVisualisations(charts, url, options)
+    // await saveVisualisations(coupling, url, options)
 }
 
 async function saveVisualisations(viss: Vis[], url: string, options: { width: number; height: number; output: string }) {
@@ -45,7 +52,7 @@ async function saveVisualisations(viss: Vis[], url: string, options: { width: nu
 
 function mkdir(dir: string) {
     if (!fs.existsSync(dir)) {
-        fs.mkdirSync(dir)
+        fs.mkdirSync(path.join('.', dir))
     }
 }
 
@@ -69,3 +76,5 @@ async function getVisData(url: string,
 }
 
 interface Vis { id: number, name: string, url: string, svgClass: string }
+
+interface Visualisations { charts: string[], sysmaps: string[], coupling: string[] }
