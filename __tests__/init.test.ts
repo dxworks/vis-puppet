@@ -1,5 +1,5 @@
-describe('default test', () => {
-  it('should pass', () => {
-
-  })
+describe('test puppeteer works', () => {
+    it('should print pdf of vis', () => {
+        //
+    })
 })

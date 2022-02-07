@@ -3,4 +3,4 @@
 import {mainCommand} from './vis-puppet'
 
 mainCommand
-  .parse(process.argv)
+    .parse(process.argv)
