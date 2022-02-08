@@ -1,9 +1,13 @@
+import '@dxworks/ktextensions'
+
 import {Command} from 'commander'
 import {_package} from './utils'
 import puppeteer from 'puppeteer/lib/cjs/puppeteer/node-puppeteer-core'
+import {chr} from './chr'
 
 export const mainCommand = new Command()
     .name('vis-puppet')
+    .alias('vis')
     .description(_package.description)
     .argument('<url>', 'The url of the page to load')
     .argument('<selector>', 'The unique selector of the element to screenshot')
@@ -11,6 +15,7 @@ export const mainCommand = new Command()
     .option('-h, --height <height>', 'The height of the viewport', parseInt, 2000)
     .option('-o, --output <output>', 'The path of the output file')
     .version(_package.version, '-v, -version, --version, -V')
+    .addCommand(chr)
     .action(extractVis)
 
 export async function extractVis(url: string, selector: string, options: { width: number, height: number, output: string }): Promise<void> {

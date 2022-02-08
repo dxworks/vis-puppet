@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { chrPuppet } from './chr-puppet'
+import {mainCommand} from './vis-puppet'
 
-chrPuppet
+mainCommand
     .parse(process.argv)

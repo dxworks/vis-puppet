@@ -1,4 +1,6 @@
 charts:
-    - "Count changes by author"
+    - 'OVR:.*'
 sysmaps:
-    - "Status by changes"
+    - 'OVR:.*'
+graphs:
+    - '.*'
