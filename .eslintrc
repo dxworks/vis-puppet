@@ -21,8 +21,7 @@
       }
     ],
     "quotes": [
-      "error",
-      "single",
+      "off",
       {
         "avoidEscape": true
       }

@@ -1,0 +1,6 @@
+charts:
+    - 'OVR:.*'
+sysmaps:
+    - 'OVR:.*'
+graphs:
+    - '.*'
